@@ -71,7 +71,7 @@ class EvaluationHashCache:
         counter = 0
         while self.cache[cache_key] is not None and counter < EvaluationHashCache.MAX_GET_NEXT:
             if self.cache[cache_key].board_hash == cache_item.board_hash and self.cache[cache_key].depth >= cache_item.depth:
-                break
+                return
             counter += 1
         self.max_collisions = max(self.max_collisions, counter)
         self.cache[cache_key] = cache_item

@@ -19,20 +19,20 @@ class Fischer_Engine(Young_Victor_Engine):
         self.board.push(move)
         value = self.evaluate_position(depth)
         self.board.pop()
-        print(move, depth, maximize, value)
-        if maximize:
+        #print(move, depth, maximize, value)
+        if not maximize:
             return value
         else:
             return -value
 
-    def gen_moves(self, depth, maximize, sorted = False):
+    def gen_moves(self, depth, maximize, use_sorting = False):
         logging.info(START_GEN_MOVES)
         legal_moves =  list(self.board.legal_moves)
-        if not sorted:
+        if not use_sorting:
             logging.info(END_GEN_MOVES)
             return legal_moves, None
         sorted_moves = sorted(legal_moves, key=lambda move: self.get_move_value(move, depth, maximize))
-        print(f"Sorted Moves:{sorted_moves}")
+        #print(f"Sorted Moves:{sorted_moves}")
         logging.info(END_GEN_MOVES)
         return sorted_moves
     
@@ -41,9 +41,9 @@ class Fischer_Engine(Young_Victor_Engine):
         if depth <= -self.extra_depth or (depth <= 0 and not (is_capture or self.board.is_check())) or self.board.is_game_over():
             eval = self.evaluate_position(depth)
             logging.info(END_ALPHABETA + DEPTH_PARAM(depth) + EVAL_PARAM(eval) + MOVE_PARAM(""))
-            return eval
+            return eval, None
 
-        legal_moves = self.gen_moves(depth, maximize, sorted = True)
+        legal_moves = self.gen_moves(depth, maximize, use_sorting = True)
         best_value = float("-inf") if maximize else float("inf")
         best_move = None
         alpha_beta_break = False
@@ -69,12 +69,12 @@ class Fischer_Engine(Young_Victor_Engine):
             if alpha >= beta:
                 alpha_beta_break = True
                 break
-
         logging.info(END_ALPHABETA + DEPTH_PARAM(depth)+EVAL_PARAM(best_value)+MOVE_PARAM(best_move)+ALPHA_BETA_BREAK_PARAM(alpha_beta_break))
         return best_value, best_move
 
     def find_best_move(self):
         start_fen = self.board.fen()
+        self.eval_cache.set_board(self.board)
         logging.info(START_FIND_BEST + ENGINE_PARAM(self.who_am_i) + FEN_PARAM(start_fen))
         best_value, best_move = self.alpha_beta(self.max_depth, float("-inf"), float("inf"), self.board.turn, False)
         logging.info(END_FIND_BEST + ENGINE_PARAM(self.who_am_i) + MOVE_PARAM(best_move) + EVAL_PARAM(best_value))
