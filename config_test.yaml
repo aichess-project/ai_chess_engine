@@ -1,0 +1,33 @@
+ENGINE:
+  WHITE:
+    HUMAN: false
+    MAX_DEPTH: 3
+    EXTRA_DEPTH: 2
+    CACHE_SIZE: 10000
+    ENGINE_CLASS: Young_Victor_Engine
+    NNUE:
+      LIB: /Users/littlecapa/GIT/python/chess_engines/NNUE/libnnueprobe.so
+      NET: /Users/littlecapa/GIT/python/chess_engines/NNUE/nn-04cf2b4ed1da.nnue
+
+  BLACK:
+    HUMAN: false
+    MAX_DEPTH: 3
+    EXTRA_DEPTH: 2
+    CACHE_SIZE: 20000
+    ENGINE_CLASS: Young_Victor_Engine
+    NNUE:
+      LIB: /Users/littlecapa/GIT/python/chess_engines/NNUE/libnnueprobe.so
+      NET: /Users/littlecapa/GIT/python/chess_engines/NNUE/nn-04cf2b4ed1da.nnue
+
+STATS:
+  DO_STATS: true
+  APPEND: true
+  RAW_FILE: /Users/littlecapa/GIT/python/chess_engines/stats/raw_stats.csv
+
+MATCH:
+  START_POS: 7k/p7/Pp5p/1Pp3pP/2Pp1pP1/3PpP2/4P3/K7 w - - 0 1
+  NUMBER_GAMES: 1
+
+ARCHIVE_UNUSED:
+  POS: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+  ENGINE_CLASS: Kortschnoi_Engine
