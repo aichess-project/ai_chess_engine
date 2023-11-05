@@ -7,7 +7,7 @@ import chess
 class EvaluationHashCache:
 
     MY_PRIME = 11111
-    MAX_GET_NEXT = 1
+    MAX_GET_NEXT = 5
 
     StackItem = namedtuple("StackItem", [
         "board_move_state",

@@ -6,7 +6,7 @@ from engines.fischer import Fischer_Engine
 from engines.young_victor import Young_Victor_Engine
 from engines.young_bobby import Young_Bobby_Engine
 import chess, logging
-import datetime
+from datetime import datetime
 
 def play(conf):
     ui = ChessUI()

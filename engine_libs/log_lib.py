@@ -4,7 +4,7 @@ import chess
 def setup_logging(level = logging.INFO):
     logging.basicConfig(
         filename='engine.log',  # Change this to your desired log file path
-        level=logging.ERROR,  # Change the log level as needed (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+        level=logging.INFO,  # Change the log level as needed (DEBUG, INFO, WARNING, ERROR, CRITICAL)
         format='%(asctime)s.%(msecs)06f [%(levelname)s]: %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
     )
